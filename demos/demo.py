@@ -46,7 +46,8 @@ def expand_plot(ax, scale = 1.1):
     expand_axis(ax, scale, 'ylim')
 
 def plot_dubins_path(q0, q1, r=1.0, step_size=0.5):
-    qs, _ = dubins.path_sample(q0, q1, r, step_size)
+    path = dubins.shortest_path(q0, q1, r)
+    qs, _ = path.sample_many(step_size)
     qs = numpy.array(qs)
     xs = qs[:, 0]
     ys = qs[:, 1]
